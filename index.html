@@ -7,6 +7,118 @@
     <title>rc-signals-explained</title>
   </head>
   <body>
-<div class="reveal"><div class="slides"><section>Первый слайд</section><section>Второй слайд</section></div></div><script type="module" src="/src/main.js"></script>
+    <div class="reveal">
+<section>
+  <h3 style="font-size:1.4rem;">RC PWM: серия импульсов подряд</h3>
+  <div style="display:flex;align-items:center;gap:12px;margin:0 0 1.25rem;">
+    <label style="font-size:14px;color:#ccc;white-space:nowrap;">Ширина импульса</label>
+    <input type="range" min="1000" max="2000" value="1500" step="10" id="pw3" style="flex:1;" />
+    <span style="font-size:14px;font-weight:500;min-width:70px;text-align:right;color:#fff;" id="pw3-out">1500 мкс</span>
+  </div>
+
+  <svg width="100%" viewBox="0 0 680 200" role="img">
+    <line x1="20" y1="160" x2="660" y2="160" stroke="#888" stroke-width="0.5"/>
+    <text x="10" y="64" text-anchor="middle" fill="#ccc" font-size="14">5V</text>
+    <text x="10" y="164" text-anchor="middle" fill="#ccc" font-size="14">0V</text>
+    <line x1="20" y1="50" x2="20" y2="160" stroke="#888" stroke-width="0.5"/>
+
+    <path id="pwm-path3" fill="none" stroke="#378ADD" stroke-width="2" stroke-linejoin="round"/>
+
+    <line id="pmark0a" x1="0" y1="50" x2="0" y2="160" stroke="#666" stroke-width="0.5" stroke-dasharray="3 3"/>
+    <line id="pmark0b" x1="0" y1="50" x2="0" y2="160" stroke="#666" stroke-width="0.5" stroke-dasharray="3 3"/>
+    <text id="pw-label3" x="0" y="40" text-anchor="middle" fill="#ccc" font-size="13"></text>
+
+    <line id="period-a" x1="0" y1="178" x2="0" y2="178" stroke="#666" stroke-width="0.5"/>
+    <text id="period-label" x="0" y="196" text-anchor="middle" fill="#aaa" font-size="12">период 20 мс</text>
+  </svg>
+
+  <div style="display:flex;align-items:center;gap:2rem;margin-top:1rem;">
+    <svg width="160" height="120" viewBox="0 0 160 120" role="img">
+      <rect x="10" y="70" width="140" height="40" rx="8" fill="#222" stroke="#888" stroke-width="0.5"/>
+      <circle cx="80" cy="70" r="6" fill="#aaa"/>
+      <line id="servo-arm3" x1="80" y1="70" x2="80" y2="20" stroke="#D85A30" stroke-width="4" stroke-linecap="round"/>
+      <circle id="servo-tip3" cx="80" cy="20" r="4" fill="#D85A30"/>
+    </svg>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div style="background:#222;border-radius:8px;padding:1rem;">
+        <p style="font-size:13px;color:#aaa;margin:0;">Угол сервы</p>
+        <p style="font-size:24px;font-weight:500;margin:4px 0 0;color:#fff;" id="angle-out3">0°</p>
+      </div>
+      <div style="background:#222;border-radius:8px;padding:1rem;">
+        <p style="font-size:13px;color:#aaa;margin:0;">Частота</p>
+        <p style="font-size:24px;font-weight:500;margin:4px 0 0;color:#fff;">50 Гц</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    const pw = document.getElementById('pw3');
+    const pwOut = document.getElementById('pw3-out');
+    const path = document.getElementById('pwm-path3');
+    const pmark0a = document.getElementById('pmark0a');
+    const pmark0b = document.getElementById('pmark0b');
+    const pwLabel0 = document.getElementById('pw-label3');
+    const periodA = document.getElementById('period-a');
+    const periodLabel = document.getElementById('period-label');
+    const angleOut = document.getElementById('angle-out3');
+    const servoArm = document.getElementById('servo-arm3');
+    const servoTip = document.getElementById('servo-tip3');
+
+    const x0 = 20, x1 = 660;
+    const yHigh = 50, yLow = 160;
+    const periods = 3;
+    const periodUs = 20000;
+    const totalUs = periodUs * periods;
+    const pxPerUs = (x1 - x0) / totalUs;
+    const periodWidthPx = (x1 - x0) / periods;
+
+    function render() {
+      const v = parseInt(pw.value, 10);
+      pwOut.textContent = v + ' мкс';
+
+      let d = [`M ${x0} ${yLow}`];
+      for (let i = 0; i < periods; i++) {
+        const pStart = x0 + i * periodWidthPx;
+        const pEnd = pStart + v * pxPerUs;
+        d.push(`L ${pStart} ${yHigh}`);
+        d.push(`L ${pEnd} ${yHigh}`);
+        d.push(`L ${pEnd} ${yLow}`);
+        d.push(`L ${pStart + periodWidthPx} ${yLow}`);
+      }
+      path.setAttribute('d', d.join(' '));
+
+      const p0Start = x0;
+      const p0End = x0 + v * pxPerUs;
+      pmark0a.setAttribute('x1', p0Start); pmark0a.setAttribute('x2', p0Start);
+      pmark0b.setAttribute('x1', p0End); pmark0b.setAttribute('x2', p0End);
+      pwLabel0.setAttribute('x', (p0Start + p0End) / 2);
+      pwLabel0.textContent = v + ' мкс';
+
+      periodA.setAttribute('x1', x0); periodA.setAttribute('x2', x0 + periodWidthPx);
+      periodLabel.setAttribute('x', x0 + periodWidthPx / 2);
+
+      const angle = Math.round((v - 1000) / 1000 * 180 - 90);
+      angleOut.textContent = angle + '°';
+
+      const rad = (angle * Math.PI) / 180;
+      const armLen = 50;
+      const tipX = 80 + armLen * Math.sin(rad);
+      const tipY = 70 - armLen * Math.cos(rad);
+      servoArm.setAttribute('x2', tipX);
+      servoArm.setAttribute('y2', tipY);
+      servoTip.setAttribute('cx', tipX);
+      servoTip.setAttribute('cy', tipY);
+    }
+
+    pw.addEventListener('input', render);
+    render();
+  })();
+  </script>
+</section>
+
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
