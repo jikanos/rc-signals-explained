@@ -1,0 +1,46 @@
+<section>
+  <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">UAVCAN / DroneCAN: другой путь</h3>
+
+  <div style="margin: 0 0 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #4a4a4a; background: rgba(255, 255, 255, 0.05); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      <strong style="color: #ddd;">Не следующий шаг в цепочке, а другая ветка:</strong> вместо того чтобы
+      разгонять сигнал на одном проводе (Oneshot125 → Multishot → DShot), CAN-шина меняет саму топологию —
+      один провод обслуживает сразу все узлы.
+    </p>
+  </div>
+
+  <p style="color: #ccc; font-size: 14px; line-height: 1.6; margin: 0 0 1rem;">
+    UAVCAN (после форка проекта в 2022 году основная ветка называется <strong style="color: #378ADD;">DroneCAN</strong>) —
+    протокол поверх физической шины CAN, изначально созданной для автомобильной и промышленной электроники,
+    где надёжность важнее задержки одного канала. В дронах она несёт команды ESC, а заодно и данные GPS,
+    компаса, барометра — всё по одной паре проводов.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #378ADD; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Шина, а не звезда</strong> — один физический провод тянется через все узлы подряд, а не отдельный сигнальный провод от контроллера до каждого ESC</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Аппаратный арбитраж</strong> — если два узла заговорили одновременно, приоритет и повтор разруливаются в самом контроллере CAN на уровне железа, а не в прошивке протокола</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Проверка целостности встроена</strong> — CRC кадра CAN — часть самого стандарта шины, а не то, что каждый протокол поверх неё <a href="#/crc-explained" style="color: #378ADD; text-decoration: underline; text-decoration-style: dotted;">изобретает заново</a>, как DShot</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #3a5a3a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Где применяется</strong> — крупные мультикоптеры, VTOL, сельхоз- и грузовые дроны: там, где важнее отказоустойчивость и лёгкость добавления узлов, чем минимальная задержка одного ESC</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #D85A30; background: rgba(216, 90, 48, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      Плата за гибкость — сложность и цена: CAN-трансиверы и совместимые ESC дороже и реже встречаются
+      в гоночных наборах, поэтому в FPV-гонках так и остаётся DShot.
+    </p>
+  </div>
+
+  <p style="color: #888; font-size: 13px; margin-top: 0.75rem;">↓ смотри сравнение топологий ниже</p>
+</section>

@@ -21,19 +21,22 @@ import { initDshotDemoSlide } from './slides/06-dshot/demo.js'
 import dshotTelemetrySlide from './slides/06-dshot/telemetry.html?raw'
 import dshotCrcSlide from './slides/06-dshot/crc.html?raw'
 import motorChronologySlide from './slides/07-motor-chronology.html?raw'
-import commProtocolsTitleSlide from './slides/08-comm-protocols-title.html?raw'
-import ppmIntroSlide from './slides/09-ppm/intro.html?raw'
-import ppmDemoSlide from './slides/09-ppm/demo.html?raw'
-import { initPpmDemoSlide } from './slides/09-ppm/demo.js'
-import sbusIntroSlide from './slides/10-sbus/intro.html?raw'
-import sbusDemoSlide from './slides/10-sbus/demo.html?raw'
-import { initSbusDemoSlide } from './slides/10-sbus/demo.js'
-import crsfIntroSlide from './slides/11-crsf/intro.html?raw'
-import crsfDemoSlide from './slides/11-crsf/demo.html?raw'
-import { initCrsfDemoSlide } from './slides/11-crsf/demo.js'
-import commChronologySlide from './slides/12-comm-chronology.html?raw'
-import thanksSlide from './slides/13-thanks.html?raw'
-import { initThanksSlide } from './slides/13-thanks.js'
+import uavcanIntroSlide from './slides/08-uavcan/intro.html?raw'
+import uavcanDemoSlide from './slides/08-uavcan/demo.html?raw'
+import { initUavcanDemoSlide } from './slides/08-uavcan/demo.js'
+import commProtocolsTitleSlide from './slides/09-comm-protocols-title.html?raw'
+import ppmIntroSlide from './slides/10-ppm/intro.html?raw'
+import ppmDemoSlide from './slides/10-ppm/demo.html?raw'
+import { initPpmDemoSlide } from './slides/10-ppm/demo.js'
+import sbusIntroSlide from './slides/11-sbus/intro.html?raw'
+import sbusDemoSlide from './slides/11-sbus/demo.html?raw'
+import { initSbusDemoSlide } from './slides/11-sbus/demo.js'
+import crsfIntroSlide from './slides/12-crsf/intro.html?raw'
+import crsfDemoSlide from './slides/12-crsf/demo.html?raw'
+import { initCrsfDemoSlide } from './slides/12-crsf/demo.js'
+import commChronologySlide from './slides/13-comm-chronology.html?raw'
+import thanksSlide from './slides/14-thanks.html?raw'
+import { initThanksSlide } from './slides/14-thanks.js'
 
 // Top-level entries are horizontal slides. An array entry is a vertical
 // stack — its raw sections are wrapped together in one outer <section>.
@@ -45,6 +48,7 @@ const slides = [
   [multishotIntroSlide, multishotDemoSlide],
   [dshotIntroSlide, dshotDemoSlide, dshotTelemetrySlide, dshotCrcSlide],
   motorChronologySlide,
+  [uavcanIntroSlide, uavcanDemoSlide],
   commProtocolsTitleSlide,
   [ppmIntroSlide, ppmDemoSlide],
   [sbusIntroSlide, sbusDemoSlide],
@@ -62,6 +66,7 @@ initPwmDemoSlide()
 initOneshot125DemoSlide()
 initMultishotDemoSlide()
 initDshotDemoSlide()
+initUavcanDemoSlide()
 initPpmDemoSlide()
 initSbusDemoSlide()
 initCrsfDemoSlide()
