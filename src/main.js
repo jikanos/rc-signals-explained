@@ -8,19 +8,26 @@ import motorProtocolsTitleSlide from './slides/02-motor-protocols-title.html?raw
 import pwmIntroSlide from './slides/03-pwm/intro.html?raw'
 import pwmDemoSlide from './slides/03-pwm/demo.html?raw'
 import { initPwmDemoSlide } from './slides/03-pwm/demo.js'
-import dshotIntroSlide from './slides/04-dshot/intro.html?raw'
-import dshotDemoSlide from './slides/04-dshot/demo.html?raw'
-import { initDshotDemoSlide } from './slides/04-dshot/demo.js'
-import commProtocolsTitleSlide from './slides/05-comm-protocols-title.html?raw'
-import ppmIntroSlide from './slides/06-ppm/intro.html?raw'
-import ppmDemoSlide from './slides/06-ppm/demo.html?raw'
-import { initPpmDemoSlide } from './slides/06-ppm/demo.js'
-import sbusIntroSlide from './slides/07-sbus/intro.html?raw'
-import sbusDemoSlide from './slides/07-sbus/demo.html?raw'
-import { initSbusDemoSlide } from './slides/07-sbus/demo.js'
-import crsfIntroSlide from './slides/08-crsf/intro.html?raw'
-import crsfDemoSlide from './slides/08-crsf/demo.html?raw'
-import { initCrsfDemoSlide } from './slides/08-crsf/demo.js'
+import oneshot125IntroSlide from './slides/04-oneshot125/intro.html?raw'
+import oneshot125DemoSlide from './slides/04-oneshot125/demo.html?raw'
+import { initOneshot125DemoSlide } from './slides/04-oneshot125/demo.js'
+import multishotIntroSlide from './slides/05-multishot/intro.html?raw'
+import multishotDemoSlide from './slides/05-multishot/demo.html?raw'
+import { initMultishotDemoSlide } from './slides/05-multishot/demo.js'
+import dshotIntroSlide from './slides/06-dshot/intro.html?raw'
+import dshotDemoSlide from './slides/06-dshot/demo.html?raw'
+import { initDshotDemoSlide } from './slides/06-dshot/demo.js'
+import motorChronologySlide from './slides/07-motor-chronology.html?raw'
+import commProtocolsTitleSlide from './slides/08-comm-protocols-title.html?raw'
+import ppmIntroSlide from './slides/09-ppm/intro.html?raw'
+import ppmDemoSlide from './slides/09-ppm/demo.html?raw'
+import { initPpmDemoSlide } from './slides/09-ppm/demo.js'
+import sbusIntroSlide from './slides/10-sbus/intro.html?raw'
+import sbusDemoSlide from './slides/10-sbus/demo.html?raw'
+import { initSbusDemoSlide } from './slides/10-sbus/demo.js'
+import crsfIntroSlide from './slides/11-crsf/intro.html?raw'
+import crsfDemoSlide from './slides/11-crsf/demo.html?raw'
+import { initCrsfDemoSlide } from './slides/11-crsf/demo.js'
 
 // Top-level entries are horizontal slides. An array entry is a vertical
 // stack — its raw sections are wrapped together in one outer <section>.
@@ -28,7 +35,10 @@ const slides = [
   titleSlide,
   motorProtocolsTitleSlide,
   [pwmIntroSlide, pwmDemoSlide],
+  [oneshot125IntroSlide, oneshot125DemoSlide],
+  [multishotIntroSlide, multishotDemoSlide],
   [dshotIntroSlide, dshotDemoSlide],
+  motorChronologySlide,
   commProtocolsTitleSlide,
   [ppmIntroSlide, ppmDemoSlide],
   [sbusIntroSlide, sbusDemoSlide],
@@ -41,6 +51,8 @@ const renderSlide = (entry) =>
 document.querySelector('.slides').innerHTML = slides.map(renderSlide).join('\n')
 
 initPwmDemoSlide()
+initOneshot125DemoSlide()
+initMultishotDemoSlide()
 initDshotDemoSlide()
 initPpmDemoSlide()
 initSbusDemoSlide()

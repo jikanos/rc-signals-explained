@@ -1,0 +1,45 @@
+<section>
+  <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">Oneshot125: первый шаг к скорости</h3>
+
+  <div style="margin: 0 0 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #378ADD; background: rgba(55, 138, 221, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      <strong style="color: #378ADD;">← От PWM:</strong> контур стабилизации (PID) на полётном контроллере
+      считает тысячи раз в секунду, а ESC получал команды всего 50 раз — мотор реагировал на данные,
+      которые успевали устареть на десятки итераций расчёта.
+    </p>
+  </div>
+
+  <p style="color: #ccc; font-size: 14px; line-height: 1.6; margin: 0 0 1rem;">
+    Первый шаг к более быстрому ESC-протоколу сделала компания Flyduino в 2015 году. Идея простая:
+    оставить тот же принцип «<strong style="color: #378ADD;">ширина импульса = значение газа</strong>»,
+    но сжать диапазон 1000–2000 мкс до 125–250 мкс — в 8 раз компактнее.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #378ADD; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Тот же принцип, другой масштаб</strong> — по-прежнему аналоговый импульс, просто короче: 125–250 мкс вместо 1000–2000</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Синхронизация с PID</strong> — ESC обновляется в такт частоте расчёта стабилизации, а не по фиксированным 50 Гц</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Быстрое принятие</strong> — почти сразу появился в Cleanflight, Betaflight, KISS</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Всё ещё аналоговый</strong> — уязвимости PWM (помехи, калибровка ESC) никуда не делись, сигнал просто быстрее</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #D85A30; background: rgba(216, 90, 48, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      <strong style="color: #D85A30;">→ Дальше:</strong> гонка за скоростью продолжается —
+      <strong style="color: #fff;">Multishot</strong> сжимает импульс ещё примерно в 10 раз.
+    </p>
+  </div>
+
+  <p style="color: #888; font-size: 13px; margin-top: 0.75rem;">↓ смотри анимацию ниже</p>
+</section>

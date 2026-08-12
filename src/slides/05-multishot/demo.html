@@ -1,0 +1,36 @@
+<section>
+  <h3 style="font-size: 1.4rem;">Multishot: предел аналогового сжатия</h3>
+
+  <div style="display: flex; align-items: center; gap: 12px; margin: 0 0 1.25rem;">
+    <label style="font-size: 14px; color: #ccc; white-space: nowrap;">Ширина импульса</label>
+    <input id="ms-pw" type="range" min="5" max="25" value="15" step="1" style="flex: 1;" />
+    <span id="ms-pw-out" style="font-size: 14px; font-weight: 500; min-width: 70px; text-align: right; color: #fff;">15 мкс</span>
+  </div>
+
+  <svg width="100%" viewBox="0 0 680 200" role="img">
+    <line x1="20" y1="160" x2="660" y2="160" stroke="#888" stroke-width="0.5"></line>
+    <text x="10" y="64" text-anchor="middle" fill="#ccc" font-size="14">5V</text>
+    <text x="10" y="164" text-anchor="middle" fill="#ccc" font-size="14">0V</text>
+    <line x1="20" y1="50" x2="20" y2="160" stroke="#888" stroke-width="0.5"></line>
+
+    <path id="ms-path" fill="none" stroke="#378ADD" stroke-width="2" stroke-linejoin="round"></path>
+
+    <line id="ms-mark-a" x1="0" y1="50" x2="0" y2="160" stroke="#666" stroke-width="0.5" stroke-dasharray="3 3"></line>
+    <line id="ms-mark-b" x1="0" y1="50" x2="0" y2="160" stroke="#666" stroke-width="0.5" stroke-dasharray="3 3"></line>
+    <text id="ms-pw-label" x="0" y="40" text-anchor="middle" fill="#ccc" font-size="13"></text>
+
+    <line id="ms-period-a" x1="0" y1="178" x2="0" y2="178" stroke="#666" stroke-width="0.5"></line>
+    <text id="ms-period-label" x="0" y="196" text-anchor="middle" fill="#aaa" font-size="12">период ~100 мкс (частота цикла PID)</text>
+  </svg>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 1rem;">
+    <div style="background: #222; border-radius: 8px; padding: 1rem;">
+      <p style="font-size: 13px; color: #aaa; margin: 0;">Газ</p>
+      <p id="ms-throttle-out" style="font-size: 24px; font-weight: 500; margin: 4px 0 0; color: #fff;">50%</p>
+    </div>
+    <div style="background: #222; border-radius: 8px; padding: 1rem;">
+      <p style="font-size: 13px; color: #aaa; margin: 0;">Быстрее классического PWM</p>
+      <p style="font-size: 24px; font-weight: 500; margin: 4px 0 0; color: #fff;">×80</p>
+    </div>
+  </div>
+</section>

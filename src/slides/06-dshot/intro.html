@@ -3,8 +3,9 @@
 
   <div style="margin: 0 0 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #378ADD; background: rgba(55, 138, 221, 0.1); border-radius: 4px;">
     <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
-      <strong style="color: #378ADD;">← От PWM:</strong> аналоговый импульс легко исказить помехой, а без
-      контрольной суммы приёмник не заметит подмену команды. DShot упаковывает газ в цифровой пакет с CRC.
+      <strong style="color: #378ADD;">← От аналоговой ветки (PWM → Oneshot125 → Multishot):</strong> сжимать
+      импульс дальше было уже некуда, а к помехам и калибровке ESC протоколы оставались уязвимы. DShot решает
+      это не скоростью, а сменой природы сигнала — на цифровую, с контрольной суммой.
     </p>
   </div>
 
@@ -34,6 +35,10 @@
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #3a5a3a; flex-shrink: 0; margin-top: 2px;"></span>
       <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Скоростные варианты</strong> — DShot150/300/600/1200: чем больше число, тем выше частота обновления и меньше задержка</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #2a4d6e; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Bidirectional DShot</strong> — версия с обратной связью по eRPM: контроллер узнаёт, как мотор крутится на самом деле, а не просто отправляет команду вслепую</p>
     </div>
   </div>
 
