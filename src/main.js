@@ -11,6 +11,8 @@ import { initDshotSlide } from './slides/04-dshot.js'
 import commProtocolsTitleSlide from './slides/05-comm-protocols-title.html?raw'
 import ppmSlide from './slides/06-ppm.html?raw'
 import { initPpmSlide } from './slides/06-ppm.js'
+import crsfSlide from './slides/07-crsf.html?raw'
+import { initCrsfSlide } from './slides/07-crsf.js'
 
 const slides = [
   titleSlide,
@@ -19,6 +21,7 @@ const slides = [
   dshotSlide,
   commProtocolsTitleSlide,
   ppmSlide,
+  crsfSlide,
 ]
 
 document.querySelector('.slides').innerHTML = slides.join('\n')
@@ -26,6 +29,7 @@ document.querySelector('.slides').innerHTML = slides.join('\n')
 initPwmSlide()
 initDshotSlide()
 initPpmSlide()
+initCrsfSlide()
 
 const deck = new Reveal()
 deck.initialize()
