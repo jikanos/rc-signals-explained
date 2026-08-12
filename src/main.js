@@ -11,8 +11,9 @@ import dshotIntroSlide from './slides/04-dshot/intro.html?raw'
 import dshotDemoSlide from './slides/04-dshot/demo.html?raw'
 import { initDshotDemoSlide } from './slides/04-dshot/demo.js'
 import commProtocolsTitleSlide from './slides/05-comm-protocols-title.html?raw'
-import ppmSlide from './slides/06-ppm.html?raw'
-import { initPpmSlide } from './slides/06-ppm.js'
+import ppmIntroSlide from './slides/06-ppm/intro.html?raw'
+import ppmDemoSlide from './slides/06-ppm/demo.html?raw'
+import { initPpmDemoSlide } from './slides/06-ppm/demo.js'
 import sbusSlide from './slides/07-sbus.html?raw'
 import { initSbusSlide } from './slides/07-sbus.js'
 import crsfSlide from './slides/08-crsf.html?raw'
@@ -26,7 +27,7 @@ const slides = [
   [pwmIntroSlide, pwmDemoSlide],
   [dshotIntroSlide, dshotDemoSlide],
   commProtocolsTitleSlide,
-  ppmSlide,
+  [ppmIntroSlide, ppmDemoSlide],
   sbusSlide,
   crsfSlide,
 ]
@@ -38,7 +39,7 @@ document.querySelector('.slides').innerHTML = slides.map(renderSlide).join('\n')
 
 initPwmDemoSlide()
 initDshotDemoSlide()
-initPpmSlide()
+initPpmDemoSlide()
 initSbusSlide()
 initCrsfSlide()
 

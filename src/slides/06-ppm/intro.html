@@ -1,0 +1,30 @@
+<section>
+  <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">PPM: как это работает</h3>
+
+  <p style="color: #ccc; font-size: 15px; line-height: 1.6; margin: 0 0 1.25rem;">
+    Способ передать <strong style="color: #378ADD;">несколько каналов по одному проводу</strong>,
+    в отличие от PWM, где каждому серво нужен свой провод. Все значения каналов идут подряд
+    в одном кадре, друг за другом.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #378ADD; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Разделители</strong> — короткие импульсы между каналами просто отмечают границу, сами по себе значения не несут</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Значение канала</strong> — кодируется временем между двумя соседними разделителями (1000–2000 мкс, как в PWM)</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Синхропауза</strong> — длинный промежуток в конце кадра отмечает его завершение и начало следующего</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">До 8 каналов</strong> — весь кадр укладывается в те же 20 мс (50 Гц), что и период одиночного PWM</p>
+    </div>
+  </div>
+
+  <p style="color: #888; font-size: 13px; margin-top: 1.5rem;">↓ смотри анимацию ниже</p>
+</section>

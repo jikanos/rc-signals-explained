@@ -38,7 +38,8 @@
 Текущий порядок: `01-title` → `02-motor-protocols-title` →
 `03-pwm/` (вертикальный стек: `intro` + `demo`) →
 `04-dshot/` (вертикальный стек: `intro` + `demo`) →
-`05-comm-protocols-title` → `06-ppm` → `07-sbus` → `08-crsf`.
+`05-comm-protocols-title` →
+`06-ppm/` (вертикальный стек: `intro` + `demo`) → `07-sbus` → `08-crsf`.
 
 Чтобы добавить новый слайд: создать `NN-name.html` (+ `.js` если нужна
 интерактивность) в `src/slides/`, импортировать в `main.js` и вставить в

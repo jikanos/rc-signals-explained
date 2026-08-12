@@ -1,4 +1,4 @@
-export function initPpmSlide() {
+export function initPpmDemoSlide() {
   const sliders = ['ch1', 'ch2', 'ch3', 'ch4'].map((id) => document.getElementById(id));
   const outs = ['ch1-out', 'ch2-out', 'ch3-out', 'ch4-out'].map((id) => document.getElementById(id));
   const path = document.getElementById('ppm-path');
