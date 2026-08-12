@@ -1,0 +1,35 @@
+<section id="dshot-telemetry">
+  <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">DShot Telemetry: обратная связь с мотором</h3>
+
+  <p style="color: #ccc; font-size: 14px; line-height: 1.6; margin: 0 0 1rem;">
+    Обычный DShot — сигнал в одну сторону: контроллер командует, ESC молча исполняет.
+    <strong style="color: #378ADD;">Bidirectional DShot</strong> добавляет обратный канал
+    по тому же самому проводу, без дополнительных линий и разъёмов.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #378ADD; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Как это работает</strong> — линия работает в half-duplex: сразу после каждой команды на короткое время переключается на приём, и ESC успевает вставить закодированный ответ (GCR) до следующего пакета</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Что передаётся</strong> — в базовой версии это eRPM (обороты в электрических градусах; реальные RPM = eRPM ÷ число пар полюсов мотора); расширенная телеметрия (EDT) добавляет напряжение, ток и температуру, если поддерживает прошивка ESC</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Зачем это нужно</strong> — зная реальные обороты каждого мотора, полётный контроллер настраивает динамический notch-фильтр гироскопа точно под текущую вибрацию винта — сигнал стабилизации становится чище без ручной настройки под конкретный дрон</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Требования</strong> — нужна прошивка ESC (BLHeli_32, AM32, Bluejay) и полётного контроллера с поддержкой bidirectional DShot; на старых или дешёвых ESC этой функции может не быть</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 1rem; padding: 0.75rem 1rem; border-left: 3px solid #2a4d6e; background: rgba(42, 77, 110, 0.15); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      Это ключевое отличие от одностороннего SBUS: цифровой протокол получает обратный канал «бесплатно» —
+      просто меняя правила использования уже существующего провода, без единой лишней жилы.
+    </p>
+  </div>
+</section>
