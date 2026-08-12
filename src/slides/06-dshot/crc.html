@@ -1,0 +1,35 @@
+<section id="crc-explained">
+  <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">CRC: как пакет проверяет сам себя</h3>
+
+  <p style="color: #ccc; font-size: 14px; line-height: 1.6; margin: 0 0 1rem;">
+    Каждый пакет DShot и CRSF заканчивается <strong style="color: #378ADD;">контрольной суммой</strong> (CRC) —
+    несколькими битами, которые получатель пересчитывает из остальных данных пакета и сверяет с пришедшим
+    значением. Не совпало — пакет считается повреждённым и просто отбрасывается, а не исполняется как команда.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #378ADD; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Зачем</strong> — без CRC приёмник не отличит настоящую команду от искажённой помехой: один перевёрнутый бит превращает «5% газа» в «80% газа», и мотор отработает это как настоящий приказ</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Как считает DShot</strong> — 12 бит данных (throttle + бит телеметрии) складываются через XOR со сдвигами на 4 и 8 бит; младшие 4 бита результата и есть CRC пакета</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Компромисс размера</strong> — всего 4 бита ловят подавляющее большинство реальных помех на линии, почти не увеличивая вес пакета — важно для протокола, где счёт идёт на микросекунды</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #2a4d6e; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">У CRSF надёжнее</strong> — там целый байт (CRC8) на весь пакет, потому что по одной шине идут разные типы кадров (каналы, GPS, телеметрия), и цена спутать их выше</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 1rem; padding: 0.75rem 1rem; border-left: 3px solid #D85A30; background: rgba(216, 90, 48, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      Если контрольная сумма не сошлась, ESC или приёмник просто игнорирует пакет и держит последнюю
+      принятую команду — а не гадает, что имелось в виду.
+    </p>
+  </div>
+</section>

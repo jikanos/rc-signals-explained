@@ -19,6 +19,7 @@ import dshotIntroSlide from './slides/06-dshot/intro.html?raw'
 import dshotDemoSlide from './slides/06-dshot/demo.html?raw'
 import { initDshotDemoSlide } from './slides/06-dshot/demo.js'
 import dshotTelemetrySlide from './slides/06-dshot/telemetry.html?raw'
+import dshotCrcSlide from './slides/06-dshot/crc.html?raw'
 import motorChronologySlide from './slides/07-motor-chronology.html?raw'
 import commProtocolsTitleSlide from './slides/08-comm-protocols-title.html?raw'
 import ppmIntroSlide from './slides/09-ppm/intro.html?raw'
@@ -41,7 +42,7 @@ const slides = [
   [pwmIntroSlide, pwmDemoSlide, pwmCalibrationSlide],
   [oneshot125IntroSlide, oneshot125DemoSlide],
   [multishotIntroSlide, multishotDemoSlide],
-  [dshotIntroSlide, dshotDemoSlide, dshotTelemetrySlide],
+  [dshotIntroSlide, dshotDemoSlide, dshotTelemetrySlide, dshotCrcSlide],
   motorChronologySlide,
   commProtocolsTitleSlide,
   [ppmIntroSlide, ppmDemoSlide],

@@ -5,7 +5,7 @@
     <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
       <strong style="color: #378ADD;">← От аналоговой ветки (PWM → Oneshot125 → Multishot):</strong> сжимать
       импульс дальше было уже некуда, а к помехам и <a href="#/esc-calibration" style="color: #378ADD; text-decoration: underline; text-decoration-style: dotted;">калибровке ESC</a> протоколы оставались уязвимы. DShot решает
-      это не скоростью, а сменой природы сигнала — на цифровую, с контрольной суммой.
+      это не скоростью, а сменой природы сигнала — на цифровую, с <a href="#/crc-explained" style="color: #378ADD; text-decoration: underline; text-decoration-style: dotted;">контрольной суммой</a>.
     </p>
   </div>
 
@@ -22,7 +22,7 @@
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Пакет 16 бит</strong> — 11 бит throttle (0–2047) + 1 бит запроса телеметрии + 4 бита CRC</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Пакет 16 бит</strong> — 11 бит throttle (0–2047) + 1 бит запроса телеметрии + <a href="#/crc-explained" style="color: #378ADD; text-decoration: underline; text-decoration-style: dotted;">4 бита CRC</a></p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
@@ -30,7 +30,7 @@
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">CRC и телеметрия</strong> — 4-битная контрольная сумма отбраковывает пакеты, повреждённые помехой; ESC может отвечать <a href="#/dshot-telemetry" style="color: #378ADD; text-decoration: underline; text-decoration-style: dotted;">телеметрией</a> по тому же проводу</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">CRC и телеметрия</strong> — <a href="#/crc-explained" style="color: #378ADD; text-decoration: underline; text-decoration-style: dotted;">4-битная контрольная сумма</a> отбраковывает пакеты, повреждённые помехой; ESC может отвечать <a href="#/dshot-telemetry" style="color: #378ADD; text-decoration: underline; text-decoration-style: dotted;">телеметрией</a> по тому же проводу</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #3a5a3a; flex-shrink: 0; margin-top: 2px;"></span>
