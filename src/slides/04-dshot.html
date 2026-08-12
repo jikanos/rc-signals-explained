@@ -1,0 +1,54 @@
+<section>
+  <h3 style="font-size: 1.3rem; margin: 0 0 0.5rem;">DShot: структура цифрового пакета (16 бит)</h3>
+
+  <div style="display: flex; align-items: center; gap: 12px; margin: 0 0 0.6rem;">
+    <label style="font-size: 13px; color: #ccc; white-space: nowrap;">Значение газа (throttle)</label>
+    <input id="thr" type="range" min="0" max="2047" value="1000" step="1" style="flex: 1;" />
+    <span id="thr-out" style="font-size: 13px; font-weight: 500; min-width: 50px; text-align: right; color: #fff;">1000</span>
+  </div>
+
+  <p style="color: #ccc; font-size: 13px; margin: 0 0 0.4rem;">
+    <strong style="color: #D85A30;">Длинный</strong> высокий импульс внутри слота — это <strong style="color: #D85A30;">1</strong>,
+    <strong style="color: #378ADD;">короткий</strong> — это <strong style="color: #378ADD;">0</strong>. Длина слота (бита) всегда одинаковая.
+  </p>
+
+  <svg id="bit-svg" width="100%" viewBox="0 5 680 155" role="img" style="display: block; margin-bottom: 6px;">
+    <text x="40" y="26" fill="#fff" font-size="14" font-weight="600">Как кодируется 0 и 1</text>
+
+    <line x1="40" y1="100" x2="300" y2="100" stroke="#888" stroke-width="0.5"></line>
+    <path fill="none" stroke="#378ADD" stroke-width="2" d="M 40 100 L 40 60 L 90 60 L 90 100 L 300 100"></path>
+    <line x1="90" y1="108" x2="90" y2="115" stroke="#666" stroke-width="0.5"></line>
+    <text x="65" y="128" text-anchor="middle" fill="#aaa" font-size="12">~33%</text>
+    <text x="65" y="50" text-anchor="middle" fill="#fff" font-size="13">бит = 0</text>
+
+    <line x1="360" y1="100" x2="620" y2="100" stroke="#888" stroke-width="0.5"></line>
+    <path fill="none" stroke="#D85A30" stroke-width="2" d="M 360 100 L 360 60 L 550 60 L 550 100 L 620 100"></path>
+    <line x1="550" y1="108" x2="550" y2="115" stroke="#666" stroke-width="0.5"></line>
+    <text x="455" y="128" text-anchor="middle" fill="#aaa" font-size="12">~66%</text>
+    <text x="455" y="50" text-anchor="middle" fill="#fff" font-size="13">бит = 1</text>
+
+    <text x="170" y="148" text-anchor="middle" fill="#aaa" font-size="12">длина слота фиксирована</text>
+    <text x="490" y="148" text-anchor="middle" fill="#aaa" font-size="12">длина слота фиксирована</text>
+  </svg>
+
+  <svg id="packet-svg" width="100%" viewBox="0 20 680 90" role="img" style="display: block; margin-bottom: 6px;"></svg>
+
+  <svg id="wave-svg" width="100%" viewBox="0 15 680 100" role="img" style="display: block;">
+    <path id="wave-path" fill="none" stroke="#378ADD" stroke-width="1.5"></path>
+  </svg>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 0.6rem;">
+    <div style="background: #222; border-radius: 8px; padding: 0.6rem 1rem;">
+      <p style="font-size: 12px; color: #aaa; margin: 0;">Throttle (11 бит)</p>
+      <p id="thr-bin" style="font-size: 16px; font-weight: 500; margin: 2px 0 0; color: #fff;"></p>
+    </div>
+    <div style="background: #222; border-radius: 8px; padding: 0.6rem 1rem;">
+      <p style="font-size: 12px; color: #aaa; margin: 0;">Телеметрия</p>
+      <p id="telem-bit" style="font-size: 16px; font-weight: 500; margin: 2px 0 0; color: #fff;">0</p>
+    </div>
+    <div style="background: #222; border-radius: 8px; padding: 0.6rem 1rem;">
+      <p style="font-size: 12px; color: #aaa; margin: 0;">CRC (4 бита)</p>
+      <p id="crc-out" style="font-size: 16px; font-weight: 500; margin: 2px 0 0; color: #fff;"></p>
+    </div>
+  </div>
+</section>
