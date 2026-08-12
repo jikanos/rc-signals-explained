@@ -36,7 +36,8 @@
 `[pwmIntroSlide, pwmDemoSlide]` — текстовое объяснение сверху, анимация снизу.
 
 Текущий порядок: `01-title` → `02-motor-protocols-title` →
-`03-pwm/` (вертикальный стек: `intro` + `demo`) → `04-dshot` →
+`03-pwm/` (вертикальный стек: `intro` + `demo`) →
+`04-dshot/` (вертикальный стек: `intro` + `demo`) →
 `05-comm-protocols-title` → `06-ppm` → `07-sbus` → `08-crsf`.
 
 Чтобы добавить новый слайд: создать `NN-name.html` (+ `.js` если нужна

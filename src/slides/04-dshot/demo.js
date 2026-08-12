@@ -1,4 +1,4 @@
-export function initDshotSlide() {
+export function initDshotDemoSlide() {
   const thr = document.getElementById('thr');
   const thrOut = document.getElementById('thr-out');
   const thrBin = document.getElementById('thr-bin');

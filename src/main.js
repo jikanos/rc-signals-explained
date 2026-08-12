@@ -7,8 +7,9 @@ import motorProtocolsTitleSlide from './slides/02-motor-protocols-title.html?raw
 import pwmIntroSlide from './slides/03-pwm/intro.html?raw'
 import pwmDemoSlide from './slides/03-pwm/demo.html?raw'
 import { initPwmDemoSlide } from './slides/03-pwm/demo.js'
-import dshotSlide from './slides/04-dshot.html?raw'
-import { initDshotSlide } from './slides/04-dshot.js'
+import dshotIntroSlide from './slides/04-dshot/intro.html?raw'
+import dshotDemoSlide from './slides/04-dshot/demo.html?raw'
+import { initDshotDemoSlide } from './slides/04-dshot/demo.js'
 import commProtocolsTitleSlide from './slides/05-comm-protocols-title.html?raw'
 import ppmSlide from './slides/06-ppm.html?raw'
 import { initPpmSlide } from './slides/06-ppm.js'
@@ -23,7 +24,7 @@ const slides = [
   titleSlide,
   motorProtocolsTitleSlide,
   [pwmIntroSlide, pwmDemoSlide],
-  dshotSlide,
+  [dshotIntroSlide, dshotDemoSlide],
   commProtocolsTitleSlide,
   ppmSlide,
   sbusSlide,
@@ -36,7 +37,7 @@ const renderSlide = (entry) =>
 document.querySelector('.slides').innerHTML = slides.map(renderSlide).join('\n')
 
 initPwmDemoSlide()
-initDshotSlide()
+initDshotDemoSlide()
 initPpmSlide()
 initSbusSlide()
 initCrsfSlide()
