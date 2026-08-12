@@ -1,6 +1,7 @@
 import Reveal from 'reveal.js'
 import 'reveal.js/reveal.css'
 import 'reveal.js/theme/black.css'
+import './fonts.css'
 
 import titleSlide from './slides/01-title.html?raw'
 import motorProtocolsTitleSlide from './slides/02-motor-protocols-title.html?raw'
