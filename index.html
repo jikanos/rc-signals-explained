@@ -8,115 +8,283 @@
   </head>
   <body>
     <div class="reveal">
-<section>
-  <h3 style="font-size:1.4rem;">RC PWM: серия импульсов подряд</h3>
-  <div style="display:flex;align-items:center;gap:12px;margin:0 0 1.25rem;">
-    <label style="font-size:14px;color:#ccc;white-space:nowrap;">Ширина импульса</label>
-    <input type="range" min="1000" max="2000" value="1500" step="10" id="pw3" style="flex:1;" />
-    <span style="font-size:14px;font-weight:500;min-width:70px;text-align:right;color:#fff;" id="pw3-out">1500 мкс</span>
-  </div>
+      <div class="slides">
+        <section>
+          <h3 style="font-size: 1.4rem;">RC PWM: серия импульсов подряд</h3>
 
-  <svg width="100%" viewBox="0 0 680 200" role="img">
-    <line x1="20" y1="160" x2="660" y2="160" stroke="#888" stroke-width="0.5"/>
-    <text x="10" y="64" text-anchor="middle" fill="#ccc" font-size="14">5V</text>
-    <text x="10" y="164" text-anchor="middle" fill="#ccc" font-size="14">0V</text>
-    <line x1="20" y1="50" x2="20" y2="160" stroke="#888" stroke-width="0.5"/>
+          <div style="display: flex; align-items: center; gap: 12px; margin: 0 0 1.25rem;">
+            <label style="font-size: 14px; color: #ccc; white-space: nowrap;">Ширина импульса</label>
+            <input id="pw3" type="range" min="1000" max="2000" value="1500" step="10" style="flex: 1;" />
+            <span id="pw3-out" style="font-size: 14px; font-weight: 500; min-width: 70px; text-align: right; color: #fff;">1500 мкс</span>
+          </div>
 
-    <path id="pwm-path3" fill="none" stroke="#378ADD" stroke-width="2" stroke-linejoin="round"/>
+          <svg width="100%" viewBox="0 0 680 200" role="img">
+            <line x1="20" y1="160" x2="660" y2="160" stroke="#888" stroke-width="0.5"></line>
+            <text x="10" y="64" text-anchor="middle" fill="#ccc" font-size="14">5V</text>
+            <text x="10" y="164" text-anchor="middle" fill="#ccc" font-size="14">0V</text>
+            <line x1="20" y1="50" x2="20" y2="160" stroke="#888" stroke-width="0.5"></line>
 
-    <line id="pmark0a" x1="0" y1="50" x2="0" y2="160" stroke="#666" stroke-width="0.5" stroke-dasharray="3 3"/>
-    <line id="pmark0b" x1="0" y1="50" x2="0" y2="160" stroke="#666" stroke-width="0.5" stroke-dasharray="3 3"/>
-    <text id="pw-label3" x="0" y="40" text-anchor="middle" fill="#ccc" font-size="13"></text>
+            <path id="pwm-path3" fill="none" stroke="#378ADD" stroke-width="2" stroke-linejoin="round"></path>
 
-    <line id="period-a" x1="0" y1="178" x2="0" y2="178" stroke="#666" stroke-width="0.5"/>
-    <text id="period-label" x="0" y="196" text-anchor="middle" fill="#aaa" font-size="12">период 20 мс</text>
-  </svg>
+            <line id="pmark0a" x1="0" y1="50" x2="0" y2="160" stroke="#666" stroke-width="0.5" stroke-dasharray="3 3"></line>
+            <line id="pmark0b" x1="0" y1="50" x2="0" y2="160" stroke="#666" stroke-width="0.5" stroke-dasharray="3 3"></line>
+            <text id="pw-label3" x="0" y="40" text-anchor="middle" fill="#ccc" font-size="13"></text>
 
-  <div style="display:flex;align-items:center;gap:2rem;margin-top:1rem;">
-    <svg width="160" height="120" viewBox="0 0 160 120" role="img">
-      <rect x="10" y="70" width="140" height="40" rx="8" fill="#222" stroke="#888" stroke-width="0.5"/>
-      <circle cx="80" cy="70" r="6" fill="#aaa"/>
-      <line id="servo-arm3" x1="80" y1="70" x2="80" y2="20" stroke="#D85A30" stroke-width="4" stroke-linecap="round"/>
-      <circle id="servo-tip3" cx="80" cy="20" r="4" fill="#D85A30"/>
-    </svg>
-    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <div style="background:#222;border-radius:8px;padding:1rem;">
-        <p style="font-size:13px;color:#aaa;margin:0;">Угол сервы</p>
-        <p style="font-size:24px;font-weight:500;margin:4px 0 0;color:#fff;" id="angle-out3">0°</p>
-      </div>
-      <div style="background:#222;border-radius:8px;padding:1rem;">
-        <p style="font-size:13px;color:#aaa;margin:0;">Частота</p>
-        <p style="font-size:24px;font-weight:500;margin:4px 0 0;color:#fff;">50 Гц</p>
-      </div>
-    </div>
-  </div>
+            <line id="period-a" x1="0" y1="178" x2="0" y2="178" stroke="#666" stroke-width="0.5"></line>
+            <text id="period-label" x="0" y="196" text-anchor="middle" fill="#aaa" font-size="12">период 20 мс</text>
+          </svg>
 
-  <script>
-  (function() {
-    const pw = document.getElementById('pw3');
-    const pwOut = document.getElementById('pw3-out');
-    const path = document.getElementById('pwm-path3');
-    const pmark0a = document.getElementById('pmark0a');
-    const pmark0b = document.getElementById('pmark0b');
-    const pwLabel0 = document.getElementById('pw-label3');
-    const periodA = document.getElementById('period-a');
-    const periodLabel = document.getElementById('period-label');
-    const angleOut = document.getElementById('angle-out3');
-    const servoArm = document.getElementById('servo-arm3');
-    const servoTip = document.getElementById('servo-tip3');
+          <div style="display: flex; align-items: center; gap: 2rem; margin-top: 1rem;">
+            <svg width="160" height="120" viewBox="0 0 160 120" role="img">
+              <rect x="10" y="70" width="140" height="40" rx="8" fill="#222" stroke="#888" stroke-width="0.5"></rect>
+              <circle cx="80" cy="70" r="6" fill="#aaa"></circle>
+              <line id="servo-arm3" x1="80" y1="70" x2="80" y2="20" stroke="#D85A30" stroke-width="4" stroke-linecap="round"></line>
+              <circle id="servo-tip3" cx="80" cy="20" r="4" fill="#D85A30"></circle>
+            </svg>
 
-    const x0 = 20, x1 = 660;
-    const yHigh = 50, yLow = 160;
-    const periods = 3;
-    const periodUs = 20000;
-    const totalUs = periodUs * periods;
-    const pxPerUs = (x1 - x0) / totalUs;
-    const periodWidthPx = (x1 - x0) / periods;
+            <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div style="background: #222; border-radius: 8px; padding: 1rem;">
+                <p style="font-size: 13px; color: #aaa; margin: 0;">Угол сервы</p>
+                <p id="angle-out3" style="font-size: 24px; font-weight: 500; margin: 4px 0 0; color: #fff;">0°</p>
+              </div>
+              <div style="background: #222; border-radius: 8px; padding: 1rem;">
+                <p style="font-size: 13px; color: #aaa; margin: 0;">Частота</p>
+                <p style="font-size: 24px; font-weight: 500; margin: 4px 0 0; color: #fff;">50 Гц</p>
+              </div>
+            </div>
+          </div>
 
-    function render() {
-      const v = parseInt(pw.value, 10);
-      pwOut.textContent = v + ' мкс';
+          <script>
+            (function () {
+              const pw = document.getElementById('pw3');
+              const pwOut = document.getElementById('pw3-out');
+              const path = document.getElementById('pwm-path3');
+              const pmark0a = document.getElementById('pmark0a');
+              const pmark0b = document.getElementById('pmark0b');
+              const pwLabel0 = document.getElementById('pw-label3');
+              const periodA = document.getElementById('period-a');
+              const periodLabel = document.getElementById('period-label');
+              const angleOut = document.getElementById('angle-out3');
+              const servoArm = document.getElementById('servo-arm3');
+              const servoTip = document.getElementById('servo-tip3');
 
-      let d = [`M ${x0} ${yLow}`];
-      for (let i = 0; i < periods; i++) {
-        const pStart = x0 + i * periodWidthPx;
-        const pEnd = pStart + v * pxPerUs;
-        d.push(`L ${pStart} ${yHigh}`);
-        d.push(`L ${pEnd} ${yHigh}`);
-        d.push(`L ${pEnd} ${yLow}`);
-        d.push(`L ${pStart + periodWidthPx} ${yLow}`);
-      }
-      path.setAttribute('d', d.join(' '));
+              const x0 = 20;
+              const x1 = 660;
+              const yHigh = 50;
+              const yLow = 160;
+              const periods = 3;
+              const periodUs = 20000;
+              const totalUs = periodUs * periods;
+              const pxPerUs = (x1 - x0) / totalUs;
+              const periodWidthPx = (x1 - x0) / periods;
 
-      const p0Start = x0;
-      const p0End = x0 + v * pxPerUs;
-      pmark0a.setAttribute('x1', p0Start); pmark0a.setAttribute('x2', p0Start);
-      pmark0b.setAttribute('x1', p0End); pmark0b.setAttribute('x2', p0End);
-      pwLabel0.setAttribute('x', (p0Start + p0End) / 2);
-      pwLabel0.textContent = v + ' мкс';
+              function render() {
+                const v = parseInt(pw.value, 10);
+                pwOut.textContent = `${v} мкс`;
 
-      periodA.setAttribute('x1', x0); periodA.setAttribute('x2', x0 + periodWidthPx);
-      periodLabel.setAttribute('x', x0 + periodWidthPx / 2);
+                const d = [`M ${x0} ${yLow}`];
 
-      const angle = Math.round((v - 1000) / 1000 * 180 - 90);
-      angleOut.textContent = angle + '°';
+                for (let i = 0; i < periods; i++) {
+                  const pStart = x0 + i * periodWidthPx;
+                  const pEnd = pStart + v * pxPerUs;
 
-      const rad = (angle * Math.PI) / 180;
-      const armLen = 50;
-      const tipX = 80 + armLen * Math.sin(rad);
-      const tipY = 70 - armLen * Math.cos(rad);
-      servoArm.setAttribute('x2', tipX);
-      servoArm.setAttribute('y2', tipY);
-      servoTip.setAttribute('cx', tipX);
-      servoTip.setAttribute('cy', tipY);
-    }
+                  d.push(`L ${pStart} ${yHigh}`);
+                  d.push(`L ${pEnd} ${yHigh}`);
+                  d.push(`L ${pEnd} ${yLow}`);
+                  d.push(`L ${pStart + periodWidthPx} ${yLow}`);
+                }
 
-    pw.addEventListener('input', render);
-    render();
-  })();
-  </script>
-</section>
+                path.setAttribute('d', d.join(' '));
 
+                const p0Start = x0;
+                const p0End = x0 + v * pxPerUs;
+                pmark0a.setAttribute('x1', p0Start);
+                pmark0a.setAttribute('x2', p0Start);
+                pmark0b.setAttribute('x1', p0End);
+                pmark0b.setAttribute('x2', p0End);
+                pwLabel0.setAttribute('x', (p0Start + p0End) / 2);
+                pwLabel0.textContent = `${v} мкс`;
+
+                periodA.setAttribute('x1', x0);
+                periodA.setAttribute('x2', x0 + periodWidthPx);
+                periodLabel.setAttribute('x', x0 + periodWidthPx / 2);
+
+                const angle = Math.round(((v - 1000) / 1000) * 180 - 90);
+                angleOut.textContent = `${angle}°`;
+
+                const rad = (angle * Math.PI) / 180;
+                const armLen = 50;
+                const tipX = 80 + armLen * Math.sin(rad);
+                const tipY = 70 - armLen * Math.cos(rad);
+
+                servoArm.setAttribute('x2', tipX);
+                servoArm.setAttribute('y2', tipY);
+                servoTip.setAttribute('cx', tipX);
+                servoTip.setAttribute('cy', tipY);
+              }
+
+              pw.addEventListener('input', render);
+              render();
+            })();
+          </script>
+        </section>
+
+        <section>
+          <h3 style="font-size: 1.4rem;">DShot: структура цифрового пакета (16 бит)</h3>
+
+          <div style="display: flex; align-items: center; gap: 12px; margin: 0 0 1rem;">
+            <label style="font-size: 14px; color: #ccc; white-space: nowrap;">Значение газа (throttle)</label>
+            <input id="thr" type="range" min="0" max="2047" value="1000" step="1" style="flex: 1;" />
+            <span id="thr-out" style="font-size: 14px; font-weight: 500; min-width: 50px; text-align: right; color: #fff;">1000</span>
+          </div>
+
+          <p style="color: #ccc; font-size: 15px; margin: 0 0 0.5rem;">
+            <strong style="color: #D85A30;">Длинный</strong> высокий импульс внутри слота — это <strong style="color: #D85A30;">1</strong>,
+            <strong style="color: #378ADD;">короткий</strong> — это <strong style="color: #378ADD;">0</strong>. Длина самого слота (бита) всегда одинаковая.
+          </p>
+
+          <svg id="bit-svg" width="100%" viewBox="0 0 680 190" role="img">
+            <text x="40" y="30" fill="#fff" font-size="14" font-weight="600">Как кодируется 0 и 1</text>
+
+            <line x1="40" y1="110" x2="300" y2="110" stroke="#888" stroke-width="0.5"></line>
+            <path fill="none" stroke="#378ADD" stroke-width="2" d="M 40 110 L 40 65 L 90 65 L 90 110 L 300 110"></path>
+            <line x1="90" y1="120" x2="90" y2="128" stroke="#666" stroke-width="0.5"></line>
+            <text x="65" y="140" text-anchor="middle" fill="#aaa" font-size="12">~33%</text>
+            <text x="65" y="55" text-anchor="middle" fill="#fff" font-size="13">бит = 0</text>
+
+            <line x1="360" y1="110" x2="620" y2="110" stroke="#888" stroke-width="0.5"></line>
+            <path fill="none" stroke="#D85A30" stroke-width="2" d="M 360 110 L 360 65 L 550 65 L 550 110 L 620 110"></path>
+            <line x1="550" y1="120" x2="550" y2="128" stroke="#666" stroke-width="0.5"></line>
+            <text x="455" y="140" text-anchor="middle" fill="#aaa" font-size="12">~66%</text>
+            <text x="455" y="55" text-anchor="middle" fill="#fff" font-size="13">бит = 1</text>
+
+            <text x="170" y="160" text-anchor="middle" fill="#aaa" font-size="12">длина слота фиксирована</text>
+            <text x="490" y="160" text-anchor="middle" fill="#aaa" font-size="12">длина слота фиксирована</text>
+          </svg>
+
+          <svg id="packet-svg" width="100%" viewBox="0 0 680 150" role="img"></svg>
+
+          <svg id="wave-svg" width="100%" viewBox="0 0 680 130" role="img">
+            <path id="wave-path" fill="none" stroke="#378ADD" stroke-width="1.5"></path>
+          </svg>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 1rem;">
+            <div style="background: #222; border-radius: 8px; padding: 1rem;">
+              <p style="font-size: 13px; color: #aaa; margin: 0;">Throttle (11 бит)</p>
+              <p id="thr-bin" style="font-size: 18px; font-weight: 500; margin: 4px 0 0; color: #fff;"></p>
+            </div>
+            <div style="background: #222; border-radius: 8px; padding: 1rem;">
+              <p style="font-size: 13px; color: #aaa; margin: 0;">Телеметрия</p>
+              <p id="telem-bit" style="font-size: 18px; font-weight: 500; margin: 4px 0 0; color: #fff;">0</p>
+            </div>
+            <div style="background: #222; border-radius: 8px; padding: 1rem;">
+              <p style="font-size: 13px; color: #aaa; margin: 0;">CRC (4 бита)</p>
+              <p id="crc-out" style="font-size: 18px; font-weight: 500; margin: 4px 0 0; color: #fff;"></p>
+            </div>
+          </div>
+
+          <script>
+            (function () {
+              const thr = document.getElementById('thr');
+              const thrOut = document.getElementById('thr-out');
+              const thrBin = document.getElementById('thr-bin');
+              const telemBit = document.getElementById('telem-bit');
+              const crcOut = document.getElementById('crc-out');
+              const packetSvg = document.getElementById('packet-svg');
+              const wavePath = document.getElementById('wave-path');
+
+              const x0 = 20;
+              const cellW = 38;
+              const cellH = 44;
+              const cellY = 50;
+
+              function buildPacketBoxes() {
+                let svg = '';
+                const groups = [
+                  { start: 0, count: 11, fill: '#2a4d6e', label: 'Throttle (11 бит)' },
+                  { start: 11, count: 1, fill: '#6e5a2a', label: 'Телем.' },
+                  { start: 12, count: 4, fill: '#6e2a2a', label: 'CRC (4 бита)' },
+                ];
+
+                let x = x0;
+                const labelY = cellY - 14;
+
+                groups.forEach((g) => {
+                  const gw = cellW * g.count;
+                  svg += `<text x="${x + gw / 2}" y="${labelY}" text-anchor="middle" fill="#aaa" font-size="12">${g.label}</text>`;
+
+                  for (let i = 0; i < g.count; i++) {
+                    svg += `<rect x="${x}" y="${cellY}" width="${cellW - 4}" height="${cellH}" rx="4" fill="${g.fill}" stroke="#888" stroke-width="0.5"></rect>`;
+                    svg += `<text id="bit-${g.start + i}" x="${x + (cellW - 4) / 2}" y="${cellY + cellH / 2}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="13">0</text>`;
+                    x += cellW;
+                  }
+
+                  x += 6;
+                });
+
+                packetSvg.innerHTML = svg;
+              }
+
+              buildPacketBoxes();
+
+              function crc4(bits11, telemBitVal) {
+                const val = (bits11 << 1) | telemBitVal;
+                const csum = val ^ (val >> 4) ^ (val >> 8);
+                return csum & 0xF;
+              }
+
+              function render() {
+                const t = parseInt(thr.value, 10);
+                thrOut.textContent = t;
+
+                const bits11 = t & 0x7FF;
+                const telem = 0;
+                const crc = crc4(bits11, telem);
+
+                thrBin.textContent = bits11.toString(2).padStart(11, '0');
+                telemBit.textContent = telem;
+                crcOut.textContent = crc.toString(2).padStart(4, '0');
+
+                const allBits = [];
+                for (let i = 10; i >= 0; i--) {
+                  allBits.push((bits11 >> i) & 1);
+                }
+                allBits.push(telem);
+                for (let i = 3; i >= 0; i--) {
+                  allBits.push((crc >> i) & 1);
+                }
+
+                allBits.forEach((b, idx) => {
+                  const el = document.getElementById(`bit-${idx}`);
+                  if (el) {
+                    el.textContent = b;
+                  }
+                });
+
+                const n = 16;
+                const slotW = 640 / n;
+                const yHigh = 30;
+                const yLow = 100;
+                const d = [`M 20 ${yLow}`];
+                let x = 20;
+
+                allBits.forEach((b) => {
+                  const highLen = b === 1 ? slotW * 0.66 : slotW * 0.33;
+                  d.push(`L ${x} ${yHigh}`);
+                  d.push(`L ${x + highLen} ${yHigh}`);
+                  d.push(`L ${x + highLen} ${yLow}`);
+                  x += slotW;
+                  d.push(`L ${x} ${yLow}`);
+                });
+
+                wavePath.setAttribute('d', d.join(' '));
+              }
+
+              thr.addEventListener('input', render);
+              render();
+            })();
+          </script>
+        </section>
       </div>
     </div>
     <script type="module" src="/src/main.js"></script>
