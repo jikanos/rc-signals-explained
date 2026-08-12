@@ -30,6 +30,8 @@ import { initSbusDemoSlide } from './slides/10-sbus/demo.js'
 import crsfIntroSlide from './slides/11-crsf/intro.html?raw'
 import crsfDemoSlide from './slides/11-crsf/demo.html?raw'
 import { initCrsfDemoSlide } from './slides/11-crsf/demo.js'
+import thanksSlide from './slides/12-thanks.html?raw'
+import { initThanksSlide } from './slides/12-thanks.js'
 
 // Top-level entries are horizontal slides. An array entry is a vertical
 // stack — its raw sections are wrapped together in one outer <section>.
@@ -45,6 +47,7 @@ const slides = [
   [ppmIntroSlide, ppmDemoSlide],
   [sbusIntroSlide, sbusDemoSlide],
   [crsfIntroSlide, crsfDemoSlide],
+  thanksSlide,
 ]
 
 const renderSlide = (entry) =>
@@ -59,6 +62,7 @@ initDshotDemoSlide()
 initPpmDemoSlide()
 initSbusDemoSlide()
 initCrsfDemoSlide()
+initThanksSlide()
 
 const deck = new Reveal()
 deck.initialize()
