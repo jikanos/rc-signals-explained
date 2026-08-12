@@ -1,0 +1,30 @@
+<section>
+  <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">SBUS: как это работает</h3>
+
+  <p style="color: #ccc; font-size: 15px; line-height: 1.6; margin: 0 0 1.25rem;">
+    Фирменный протокол Futaba, ставший де-факто стандартом для приёмников многих
+    производителей. Как и PPM — один провод для всех каналов, но уже
+    <strong style="color: #378ADD;">цифровой</strong> пакет вместо аналоговых импульсов.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #378ADD; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Инвертированный UART</strong> — логические уровни перевёрнуты, поэтому нужен приёмник/пин с поддержкой SBUS или внешний инвертор</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">25-байтный пакет</strong> — 16 каналов по 11 бит подряд без выравнивания по байтам, плюс байты Start/Flags/End</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">18 каналов</strong> — 16 основных + 2 доп. цифровых (вкл/выкл), а во Flags — сигналы потери кадра и failsafe</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">100 000 бод, ~143 Гц</strong> — быстрее, чем механический предел PPM, при этом всё ещё один провод</p>
+    </div>
+  </div>
+
+  <p style="color: #888; font-size: 13px; margin-top: 1.5rem;">↓ смотри анимацию ниже</p>
+</section>

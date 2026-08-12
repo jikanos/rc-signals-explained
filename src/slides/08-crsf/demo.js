@@ -1,4 +1,4 @@
-export function initCrsfSlide() {
+export function initCrsfDemoSlide() {
   const ch1 = document.getElementById('crsf-ch1');
   const ch1Out = document.getElementById('crsf-ch1-out');
   const packetBytes = document.getElementById('crsf-packet-bytes');

@@ -1,4 +1,4 @@
-export function initSbusSlide() {
+export function initSbusDemoSlide() {
   const ch1 = document.getElementById('sbus-ch1');
   const ch1Out = document.getElementById('sbus-ch1-out');
   const packetBytes = document.getElementById('sbus-packet-bytes');

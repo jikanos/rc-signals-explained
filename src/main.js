@@ -14,10 +14,12 @@ import commProtocolsTitleSlide from './slides/05-comm-protocols-title.html?raw'
 import ppmIntroSlide from './slides/06-ppm/intro.html?raw'
 import ppmDemoSlide from './slides/06-ppm/demo.html?raw'
 import { initPpmDemoSlide } from './slides/06-ppm/demo.js'
-import sbusSlide from './slides/07-sbus.html?raw'
-import { initSbusSlide } from './slides/07-sbus.js'
-import crsfSlide from './slides/08-crsf.html?raw'
-import { initCrsfSlide } from './slides/08-crsf.js'
+import sbusIntroSlide from './slides/07-sbus/intro.html?raw'
+import sbusDemoSlide from './slides/07-sbus/demo.html?raw'
+import { initSbusDemoSlide } from './slides/07-sbus/demo.js'
+import crsfIntroSlide from './slides/08-crsf/intro.html?raw'
+import crsfDemoSlide from './slides/08-crsf/demo.html?raw'
+import { initCrsfDemoSlide } from './slides/08-crsf/demo.js'
 
 // Top-level entries are horizontal slides. An array entry is a vertical
 // stack — its raw sections are wrapped together in one outer <section>.
@@ -28,8 +30,8 @@ const slides = [
   [dshotIntroSlide, dshotDemoSlide],
   commProtocolsTitleSlide,
   [ppmIntroSlide, ppmDemoSlide],
-  sbusSlide,
-  crsfSlide,
+  [sbusIntroSlide, sbusDemoSlide],
+  [crsfIntroSlide, crsfDemoSlide],
 ]
 
 const renderSlide = (entry) =>
@@ -40,8 +42,8 @@ document.querySelector('.slides').innerHTML = slides.map(renderSlide).join('\n')
 initPwmDemoSlide()
 initDshotDemoSlide()
 initPpmDemoSlide()
-initSbusSlide()
-initCrsfSlide()
+initSbusDemoSlide()
+initCrsfDemoSlide()
 
 const deck = new Reveal()
 deck.initialize()
