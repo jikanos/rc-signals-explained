@@ -4,3 +4,7 @@
   --r-main-font: 'PT Sans', Helvetica, Arial, sans-serif;
   --r-heading-font: 'PT Sans', Helvetica, Arial, sans-serif;
 }
+
+.reveal .slides section {
+  text-align: left;
+}
