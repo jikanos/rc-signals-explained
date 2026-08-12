@@ -1,30 +1,44 @@
 <section>
-  <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">PPM: как это работает</h3>
+  <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">PPM: как это работает</h3>
 
-  <p style="color: #ccc; font-size: 15px; line-height: 1.6; margin: 0 0 1.25rem;">
+  <div style="margin: 0 0 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #378ADD; background: rgba(55, 138, 221, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      <strong style="color: #378ADD;">← От PWM:</strong> чтобы управлять 6+ каналами (моторы, серво, режимы полёта),
+      пришлось бы тянуть 6+ отдельных проводов от приёмника. PPM передаёт все каналы по одному проводу подряд.
+    </p>
+  </div>
+
+  <p style="color: #ccc; font-size: 14px; line-height: 1.6; margin: 0 0 1rem;">
     Способ передать <strong style="color: #378ADD;">несколько каналов по одному проводу</strong>,
     в отличие от PWM, где каждому серво нужен свой провод. Все значения каналов идут подряд
     в одном кадре, друг за другом.
   </p>
 
-  <div style="display: flex; flex-direction: column; gap: 10px;">
+  <div style="display: flex; flex-direction: column; gap: 8px;">
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #378ADD; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Разделители</strong> — короткие импульсы между каналами просто отмечают границу, сами по себе значения не несут</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Разделители</strong> — короткие импульсы между каналами просто отмечают границу, сами по себе значения не несут</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Значение канала</strong> — кодируется временем между двумя соседними разделителями (1000–2000 мкс, как в PWM)</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Значение канала</strong> — кодируется временем между двумя соседними разделителями (1000–2000 мкс, как в PWM)</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Синхропауза</strong> — длинный промежуток в конце кадра отмечает его завершение и начало следующего</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Синхропауза</strong> — длинный промежуток в конце кадра отмечает его завершение и начало следующего</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">До 8 каналов</strong> — весь кадр укладывается в те же 20 мс (50 Гц), что и период одиночного PWM</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Предел по каналам</strong> — кадр всегда укладывается в те же 20 мс (50 Гц), что и период одиночного PWM, поэтому больше ~8 каналов в него обычно не помещается</p>
     </div>
   </div>
 
-  <p style="color: #888; font-size: 13px; margin-top: 1.5rem;">↓ смотри анимацию ниже</p>
+  <div style="margin-top: 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #D85A30; background: rgba(216, 90, 48, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      <strong style="color: #D85A30;">→ Дальше:</strong> PPM всё ещё аналоговый — точность зависит от дребезга
+      времени и помех на линии. Следующий шаг — оцифровать ту же идею в <strong style="color: #fff;">SBUS</strong>.
+    </p>
+  </div>
+
+  <p style="color: #888; font-size: 13px; margin-top: 0.75rem;">↓ смотри анимацию ниже</p>
 </section>

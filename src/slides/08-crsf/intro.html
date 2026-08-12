@@ -1,30 +1,44 @@
 <section>
-  <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">CRSF: как это работает</h3>
+  <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">CRSF: как это работает</h3>
 
-  <p style="color: #ccc; font-size: 15px; line-height: 1.6; margin: 0 0 1.25rem;">
+  <div style="margin: 0 0 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #378ADD; background: rgba(55, 138, 221, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      <strong style="color: #378ADD;">← От SBUS:</strong> пакет каналов идёт только в одну сторону, обратной
+      телеметрии нет. CRSF делает линию полностью двунаправленной.
+    </p>
+  </div>
+
+  <p style="color: #ccc; font-size: 14px; line-height: 1.6; margin: 0 0 1rem;">
     Протокол TBS Crossfire, ставший стандартом де-факто в FPV (в том числе
     для ExpressLRS). В отличие от SBUS, это <strong style="color: #378ADD;">полный дуплекс</strong> —
     приёмник может отправлять данные обратно по тому же проводу.
   </p>
 
-  <div style="display: flex; flex-direction: column; gap: 10px;">
+  <div style="display: flex; flex-direction: column; gap: 8px;">
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #378ADD; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Полный дуплекс</strong> — по той же линии в обратную сторону идёт телеметрия: GPS, напряжение батареи, RSSI и другое</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Полный дуплекс</strong> — по той же линии в обратную сторону идёт телеметрия: GPS, напряжение батареи, RSSI и другое</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Пакет с адресом и типом</strong> — байты Addr и Type позволяют одной шине нести не только каналы, но и разные виды телеметрии</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Пакет с адресом и типом</strong> — в отличие от SBUS с одним жёстким форматом, байты Addr и Type позволяют одной шине нести разные виды кадров: каналы, GPS, батарею и т.д.</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">16 каналов по 11 бит</strong> — та же упаковка без выравнивания по байтам, что и в SBUS, но с CRC для проверки целостности</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">16 каналов по 11 бит</strong> — та же упаковка без выравнивания по байтам, что и в SBUS, но с CRC для проверки целостности каждого пакета</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">420 000 бод, до 500 Гц</strong> — заметно быстрее SBUS, чем и объясняется его популярность в гоночном FPV</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">420 000 бод, до 500 Гц</strong> — заметно быстрее SBUS, чем и объясняется его популярность в гоночном FPV</p>
     </div>
   </div>
 
-  <p style="color: #888; font-size: 13px; margin-top: 1.5rem;">↓ смотри анимацию ниже</p>
+  <div style="margin-top: 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #4a4a4a; background: rgba(255, 255, 255, 0.05); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      <strong style="color: #fff;">Итог эволюции:</strong> от аналогового импульса на проводе (PWM) — через
+      мультиплексирование (PPM) и оцифровку (SBUS) — до двунаправленного цифрового протокола с телеметрией (CRSF).
+    </p>
+  </div>
+
+  <p style="color: #888; font-size: 13px; margin-top: 0.75rem;">↓ смотри анимацию ниже</p>
 </section>

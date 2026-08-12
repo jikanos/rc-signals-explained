@@ -1,34 +1,49 @@
 <section>
-  <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">DShot: как это работает</h3>
+  <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">DShot: как это работает</h3>
 
-  <p style="color: #ccc; font-size: 15px; line-height: 1.6; margin: 0 0 1.25rem;">
+  <div style="margin: 0 0 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #378ADD; background: rgba(55, 138, 221, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      <strong style="color: #378ADD;">← От PWM:</strong> аналоговый импульс легко исказить помехой, а без
+      контрольной суммы приёмник не заметит подмену команды. DShot упаковывает газ в цифровой пакет с CRC.
+    </p>
+  </div>
+
+  <p style="color: #ccc; font-size: 14px; line-height: 1.6; margin: 0 0 1rem;">
     Цифровой протокол для ESC (регуляторов оборотов мотора), пришедший на смену
     аналоговому PWM. Значение газа передаётся не шириной импульса в микросекундах,
     а <strong style="color: #378ADD;">битами</strong> в цифровом пакете.
   </p>
 
-  <div style="display: flex; flex-direction: column; gap: 10px;">
+  <div style="display: flex; flex-direction: column; gap: 8px;">
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #378ADD; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Кодирование бита</strong> — слот фиксированной длины: длинный импульс (~66%) — это 1, короткий (~33%) — это 0</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Кодирование бита</strong> — слот фиксированной длины: длинный импульс (~66%) — это 1, короткий (~33%) — это 0</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Пакет 16 бит</strong> — 11 бит throttle (0–2047) + 1 бит запроса телеметрии + 4 бита CRC</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Пакет 16 бит</strong> — 11 бит throttle (0–2047) + 1 бит запроса телеметрии + 4 бита CRC</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Без калибровки</strong> — диапазон газа фиксирован цифрой, ESC не нужно обучать под края импульса, как в PWM</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Без калибровки</strong> — диапазон газа фиксирован цифрой, ESC не нужно обучать под края импульса, как в PWM</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">CRC и телеметрия</strong> — контрольная сумма отбраковывает пакеты, повреждённые помехой, а ESC может отвечать телеметрией по тому же проводу</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">CRC и телеметрия</strong> — 4-битная контрольная сумма отбраковывает пакеты, повреждённые помехой; ESC может отвечать телеметрией по тому же проводу</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #3a5a3a; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Скоростные варианты</strong> — DShot150/300/600/1200: чем больше число, тем выше частота обновления и меньше задержка</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Скоростные варианты</strong> — DShot150/300/600/1200: чем больше число, тем выше частота обновления и меньше задержка</p>
     </div>
   </div>
 
-  <p style="color: #888; font-size: 13px; margin-top: 1.5rem;">↓ смотри анимацию ниже</p>
+  <div style="margin-top: 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #D85A30; background: rgba(216, 90, 48, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      <strong style="color: #D85A30;">→ Дальше:</strong> DShot решает проблему на стороне мотора, но у приёмника
+      остаётся своя задача — передать много каналов на один провод. Это начало другой линии эволюции:
+      <strong style="color: #fff;">PPM → SBUS → CRSF</strong>.
+    </p>
+  </div>
+
+  <p style="color: #888; font-size: 13px; margin-top: 0.75rem;">↓ смотри анимацию ниже</p>
 </section>

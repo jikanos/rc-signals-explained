@@ -1,30 +1,44 @@
 <section>
-  <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">SBUS: как это работает</h3>
+  <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">SBUS: как это работает</h3>
 
-  <p style="color: #ccc; font-size: 15px; line-height: 1.6; margin: 0 0 1.25rem;">
+  <div style="margin: 0 0 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #378ADD; background: rgba(55, 138, 221, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      <strong style="color: #378ADD;">← От PPM:</strong> кодирование через время между импульсами чувствительно
+      к дребезгу и ограничено ~8 каналами. SBUS переносит ту же идею в байты цифрового пакета.
+    </p>
+  </div>
+
+  <p style="color: #ccc; font-size: 14px; line-height: 1.6; margin: 0 0 1rem;">
     Фирменный протокол Futaba, ставший де-факто стандартом для приёмников многих
     производителей. Как и PPM — один провод для всех каналов, но уже
     <strong style="color: #378ADD;">цифровой</strong> пакет вместо аналоговых импульсов.
   </p>
 
-  <div style="display: flex; flex-direction: column; gap: 10px;">
+  <div style="display: flex; flex-direction: column; gap: 8px;">
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #378ADD; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Инвертированный UART</strong> — логические уровни перевёрнуты, поэтому нужен приёмник/пин с поддержкой SBUS или внешний инвертор</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Инвертированный UART</strong> — логические уровни перевёрнуты (историческая особенность Futaba), поэтому нужен приёмник/пин с поддержкой SBUS или внешний инвертор</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">25-байтный пакет</strong> — 16 каналов по 11 бит подряд без выравнивания по байтам, плюс байты Start/Flags/End</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">25-байтный пакет</strong> — 16 каналов по 11 бит подряд без выравнивания по байтам, плюс байты Start/Flags/End</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">18 каналов</strong> — 16 основных + 2 доп. цифровых (вкл/выкл), а во Flags — сигналы потери кадра и failsafe</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">18 каналов</strong> — 16 основных + 2 доп. цифровых (вкл/выкл), а во Flags — сигналы потери кадра и failsafe</p>
     </div>
     <div style="display: flex; gap: 10px; align-items: flex-start;">
       <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
-      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">100 000 бод, ~143 Гц</strong> — быстрее, чем механический предел PPM, при этом всё ещё один провод</p>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">100 000 бод, ~143 Гц</strong> — быстрее, чем механический предел PPM, при этом всё ещё один провод</p>
     </div>
   </div>
 
-  <p style="color: #888; font-size: 13px; margin-top: 1.5rem;">↓ смотри анимацию ниже</p>
+  <div style="margin-top: 0.75rem; padding: 0.75rem 1rem; border-left: 3px solid #D85A30; background: rgba(216, 90, 48, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      <strong style="color: #D85A30;">→ Дальше:</strong> SBUS передаёт данные только в одну сторону — от приёмника
+      к контроллеру, без обратной телеметрии. Ответ на это — полнодуплексный <strong style="color: #fff;">CRSF</strong>.
+    </p>
+  </div>
+
+  <p style="color: #888; font-size: 13px; margin-top: 0.75rem;">↓ смотри анимацию ниже</p>
 </section>
