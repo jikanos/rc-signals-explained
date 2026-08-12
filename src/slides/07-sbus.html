@@ -1,0 +1,63 @@
+<section>
+  <h3 style="font-size: 1.4rem;">SBUS: пакет Futaba (инвертированный UART)</h3>
+
+  <div style="display: flex; align-items: center; gap: 12px; margin: 0 0 1rem;">
+    <label style="font-size: 14px; color: #ccc; white-space: nowrap;">CH1</label>
+    <input id="sbus-ch1" type="range" min="0" max="2047" value="992" step="1" style="flex: 1;" />
+    <span id="sbus-ch1-out" style="font-size: 14px; font-weight: 500; min-width: 50px; text-align: right; color: #fff;">992</span>
+  </div>
+
+  <svg width="100%" viewBox="0 20 680 130" role="img" style="display: block;">
+    <defs>
+      <marker id="sbus-arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#D85A30"></path>
+      </marker>
+    </defs>
+
+    <g id="sbus-packet-bytes"></g>
+
+    <g id="sbus-ch1-callout">
+      <line id="sbus-ch1-arrow" x1="0" y1="0" x2="0" y2="0" stroke="#D85A30" stroke-width="1.5" marker-end="url(#sbus-arrowhead)"></line>
+      <text id="sbus-ch1-bin" x="0" y="0" text-anchor="middle" fill="#D85A30" font-size="13" font-family="monospace"></text>
+    </g>
+  </svg>
+
+  <p style="font-size: 13px; color: #aaa; margin: 0.5rem 0 0; line-height: 1.6;">
+    Как и в CRSF, 16 каналов по 11 бит упаковываются подряд без выравнивания по байтам.
+    Выделенный квадрат — CH1, тот самый, которым управляет ползунок выше.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 1rem;">
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Start</strong> — фиксированный байт 0x0F, отмечает начало кадра</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #3a5a3a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Ch data</strong> — 16 каналов по 11 бит, упакованные подряд в 22 байта</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">Flags</strong> — 2 доп. цифровых канала (17/18), флаг потери кадра и флаг failsafe</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e2a2a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;"><strong style="color: #fff;">End</strong> — фиксированный байт 0x00, отмечает конец кадра</p>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 1rem;">
+    <div style="background: #222; border-radius: 8px; padding: 1rem;">
+      <p style="font-size: 13px; color: #aaa; margin: 0;">Скорость линии</p>
+      <p style="font-size: 18px; font-weight: 500; margin: 4px 0 0; color: #fff;">100 000 бод</p>
+    </div>
+    <div style="background: #222; border-radius: 8px; padding: 1rem;">
+      <p style="font-size: 13px; color: #aaa; margin: 0;">Сигнал</p>
+      <p style="font-size: 18px; font-weight: 500; margin: 4px 0 0; color: #fff;">инвертирован</p>
+    </div>
+    <div style="background: #222; border-radius: 8px; padding: 1rem;">
+      <p style="font-size: 13px; color: #aaa; margin: 0;">Частота кадров</p>
+      <p style="font-size: 18px; font-weight: 500; margin: 4px 0 0; color: #fff;">~143 Гц</p>
+    </div>
+  </div>
+</section>

@@ -26,7 +26,7 @@
 и задаётся (просто меняй порядок импортов/элементов массива `slides`).
 
 Текущий порядок: `01-title` → `02-motor-protocols-title` → `03-pwm` →
-`04-dshot` → `05-comm-protocols-title` → `06-ppm` → `07-crsf`.
+`04-dshot` → `05-comm-protocols-title` → `06-ppm` → `07-sbus` → `08-crsf`.
 
 Чтобы добавить новый слайд: создать `NN-name.html` (+ `.js` если нужна
 интерактивность) в `src/slides/`, импортировать в `main.js` и вставить в
