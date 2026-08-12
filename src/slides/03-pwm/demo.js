@@ -1,4 +1,4 @@
-export function initPwmSlide() {
+export function initPwmDemoSlide() {
   const pw = document.getElementById('pw3');
   const pwOut = document.getElementById('pw3-out');
   const path = document.getElementById('pwm-path3');

@@ -1,0 +1,30 @@
+<section>
+  <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">RC PWM: как это работает</h3>
+
+  <p style="color: #ccc; font-size: 15px; line-height: 1.6; margin: 0 0 1.25rem;">
+    Самый старый и самый простой способ управлять сервоприводом или регулятором мотора.
+    Значение канала кодируется не наличием импульса, а его <strong style="color: #378ADD;">шириной</strong> —
+    длительностью высокого уровня сигнала.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #378ADD; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Период</strong> — импульсы повторяются каждые 20 мс (50 Гц), это частота обновления серво</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #D85A30; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Ширина импульса</strong> — от 1000 до 2000 мкс, где 1500 мкс — нейтральное положение (0°)</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #4a4a4a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Один провод — один канал</strong> — сигнал не мультиплексируется, каждому серво или ESC нужен отдельный провод от приёмника</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 14px; height: 14px; border-radius: 4px; background: #6e5a2a; flex-shrink: 0; margin-top: 2px;"></span>
+      <p style="font-size: 14px; margin: 0; color: #ddd;"><strong style="color: #fff;">Аналоговый и простой</strong> — никакой цифровой упаковки, CRC или телеметрии, зато поддерживается почти любой RC-техникой</p>
+    </div>
+  </div>
+
+  <p style="color: #888; font-size: 13px; margin-top: 1.5rem;">↓ смотри анимацию ниже</p>
+</section>
