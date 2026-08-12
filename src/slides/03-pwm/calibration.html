@@ -1,0 +1,40 @@
+<section id="esc-calibration">
+  <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">Калибровка ESC: зачем и как</h3>
+
+  <p style="color: #ccc; font-size: 14px; line-height: 1.6; margin: 0 0 1rem;">
+    У каждого ESC свой экземпляр электроники, поэтому «нулевой газ» и «полный газ» в микросекундах
+    у разных регуляторов слегка отличаются. Калибровка — это разовая процедура, которая учит конкретный
+    ESC точным границам 1000–2000 мкс именно этого передатчика, чтобы газ был линейным и доходил до 100%.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 20px; height: 20px; border-radius: 50%; background: #378ADD; flex-shrink: 0; color: #fff; font-size: 12px; font-weight: 700; text-align: center; line-height: 20px;">1</span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;">Стик газа на передатчике — в положение <strong style="color: #fff;">полный газ</strong> (2000 мкс), ESC выключен и без питания</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 20px; height: 20px; border-radius: 50%; background: #378ADD; flex-shrink: 0; color: #fff; font-size: 12px; font-weight: 700; text-align: center; line-height: 20px;">2</span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;">Подать питание на ESC, удерживая газ на максимуме — регулятор входит в режим калибровки и подтверждает это серией писков</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 20px; height: 20px; border-radius: 50%; background: #378ADD; flex-shrink: 0; color: #fff; font-size: 12px; font-weight: 700; text-align: center; line-height: 20px;">3</span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;">Услышав подтверждение, перевести стик газа в положение <strong style="color: #fff;">нулевой газ</strong> (1000 мкс)</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 20px; height: 20px; border-radius: 50%; background: #378ADD; flex-shrink: 0; color: #fff; font-size: 12px; font-weight: 700; text-align: center; line-height: 20px;">4</span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;">ESC фиксирует нижнюю границу — обычно другой серией писков подтверждает, что обе границы диапазона сохранены</p>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start;">
+      <span style="width: 20px; height: 20px; border-radius: 50%; background: #378ADD; flex-shrink: 0; color: #fff; font-size: 12px; font-weight: 700; text-align: center; line-height: 20px;">5</span>
+      <p style="font-size: 13px; margin: 0; color: #ddd;">Перезапустить ESC — диапазон 1000–2000 мкс от этого передатчика теперь откалиброван именно под этот регулятор</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 1rem; padding: 0.75rem 1rem; border-left: 3px solid #D85A30; background: rgba(216, 90, 48, 0.1); border-radius: 4px;">
+    <p style="font-size: 13px; color: #ccc; margin: 0; line-height: 1.5;">
+      Калибровку стоит повторять при смене передатчика, приёмника или самого ESC — иначе газ может
+      оказаться нелинейным или не доходить до 100%. Это неотъемлемая часть <strong style="color: #fff;">всей аналоговой
+      ветки</strong> (PWM, Oneshot125, Multishot) — у цифрового DShot этой проблемы нет вовсе.
+    </p>
+  </div>
+</section>

@@ -8,6 +8,7 @@
         <th style="text-align: left; padding: 0.6rem 0.75rem; color: #888; font-weight: 500;">Год</th>
         <th style="text-align: left; padding: 0.6rem 0.75rem; color: #888; font-weight: 500;">Протокол</th>
         <th style="text-align: left; padding: 0.6rem 0.75rem; color: #888; font-weight: 500;">Импульс / скорость</th>
+        <th style="text-align: left; padding: 0.6rem 0.75rem; color: #888; font-weight: 500;">Обновлений/с</th>
         <th style="text-align: left; padding: 0.6rem 0.75rem; color: #888; font-weight: 500;">Тип</th>
       </tr>
     </thead>
@@ -16,28 +17,34 @@
         <td style="padding: 0.6rem 0.75rem; color: #ddd;">~1980-е</td>
         <td style="padding: 0.6rem 0.75rem; color: #fff; font-weight: 500;">PWM (Servo)</td>
         <td style="padding: 0.6rem 0.75rem; color: #ddd;">1000–2000 мкс, 50 Гц</td>
+        <td style="padding: 0.6rem 0.75rem; color: #ddd;">50</td>
         <td style="padding: 0.6rem 0.75rem;"><span style="background: #4a4a4a; color: #ddd; padding: 2px 10px; border-radius: 10px; font-size: 12px;">Аналоговый</span></td>
       </tr>
       <tr style="border-bottom: 1px solid #3a3a3a;">
         <td style="padding: 0.6rem 0.75rem; color: #ddd;">2015</td>
         <td style="padding: 0.6rem 0.75rem; color: #fff; font-weight: 500;">Oneshot125</td>
         <td style="padding: 0.6rem 0.75rem; color: #ddd;">125–250 мкс</td>
+        <td style="padding: 0.6rem 0.75rem; color: #ddd;">~1 000*</td>
         <td style="padding: 0.6rem 0.75rem;"><span style="background: #4a4a4a; color: #ddd; padding: 2px 10px; border-radius: 10px; font-size: 12px;">Аналоговый</span></td>
       </tr>
       <tr style="border-bottom: 1px solid #3a3a3a;">
         <td style="padding: 0.6rem 0.75rem; color: #ddd;">2016</td>
         <td style="padding: 0.6rem 0.75rem; color: #fff; font-weight: 500;">Multishot</td>
         <td style="padding: 0.6rem 0.75rem; color: #ddd;">5–25 мкс</td>
+        <td style="padding: 0.6rem 0.75rem; color: #ddd;">~10 000*</td>
         <td style="padding: 0.6rem 0.75rem;"><span style="background: #4a4a4a; color: #ddd; padding: 2px 10px; border-radius: 10px; font-size: 12px;">Аналоговый</span></td>
       </tr>
       <tr>
         <td style="padding: 0.6rem 0.75rem; color: #ddd;">2016</td>
         <td style="padding: 0.6rem 0.75rem; color: #fff; font-weight: 500;">DShot</td>
         <td style="padding: 0.6rem 0.75rem; color: #ddd;">150/300/600/1200 кбит/с</td>
+        <td style="padding: 0.6rem 0.75rem; color: #ddd;">~9 400–75 000</td>
         <td style="padding: 0.6rem 0.75rem;"><span style="background: #2a4d6e; color: #cfe0f2; padding: 2px 10px; border-radius: 10px; font-size: 12px;">Цифровой</span></td>
       </tr>
     </tbody>
   </table>
+
+  <p style="color: #888; font-size: 12px; margin-top: 0.5rem;">* Oneshot125 и Multishot не имеют фиксированной частоты — импульс шлётся по такту PID-цикла, значения иллюстративны</p>
 
   <p style="color: #ccc; font-size: 14px; line-height: 1.6; margin-top: 1.25rem;">
     На сегодняшний день DShot — фактический стандарт по умолчанию для регуляторов хода в FPV.

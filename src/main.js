@@ -8,6 +8,7 @@ import motorProtocolsTitleSlide from './slides/02-motor-protocols-title.html?raw
 import pwmIntroSlide from './slides/03-pwm/intro.html?raw'
 import pwmDemoSlide from './slides/03-pwm/demo.html?raw'
 import { initPwmDemoSlide } from './slides/03-pwm/demo.js'
+import pwmCalibrationSlide from './slides/03-pwm/calibration.html?raw'
 import oneshot125IntroSlide from './slides/04-oneshot125/intro.html?raw'
 import oneshot125DemoSlide from './slides/04-oneshot125/demo.html?raw'
 import { initOneshot125DemoSlide } from './slides/04-oneshot125/demo.js'
@@ -34,7 +35,7 @@ import { initCrsfDemoSlide } from './slides/11-crsf/demo.js'
 const slides = [
   titleSlide,
   motorProtocolsTitleSlide,
-  [pwmIntroSlide, pwmDemoSlide],
+  [pwmIntroSlide, pwmDemoSlide, pwmCalibrationSlide],
   [oneshot125IntroSlide, oneshot125DemoSlide],
   [multishotIntroSlide, multishotDemoSlide],
   [dshotIntroSlide, dshotDemoSlide],
