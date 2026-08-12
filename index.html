@@ -130,6 +130,123 @@
         </section>
 
         <section>
+          <h3 style="font-size: 1.4rem;">PPM: несколько каналов по одному проводу</h3>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; margin: 0 0 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <label style="font-size: 13px; color: #ccc; white-space: nowrap; width: 52px;">CH1</label>
+              <input id="ch1" type="range" min="1000" max="2000" value="1500" step="10" style="flex: 1;" />
+              <span id="ch1-out" style="font-size: 13px; font-weight: 500; min-width: 60px; text-align: right; color: #fff;">1500 мкс</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <label style="font-size: 13px; color: #ccc; white-space: nowrap; width: 52px;">CH2</label>
+              <input id="ch2" type="range" min="1000" max="2000" value="1200" step="10" style="flex: 1;" />
+              <span id="ch2-out" style="font-size: 13px; font-weight: 500; min-width: 60px; text-align: right; color: #fff;">1200 мкс</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <label style="font-size: 13px; color: #ccc; white-space: nowrap; width: 52px;">CH3</label>
+              <input id="ch3" type="range" min="1000" max="2000" value="1800" step="10" style="flex: 1;" />
+              <span id="ch3-out" style="font-size: 13px; font-weight: 500; min-width: 60px; text-align: right; color: #fff;">1800 мкс</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <label style="font-size: 13px; color: #ccc; white-space: nowrap; width: 52px;">CH4</label>
+              <input id="ch4" type="range" min="1000" max="2000" value="1000" step="10" style="flex: 1;" />
+              <span id="ch4-out" style="font-size: 13px; font-weight: 500; min-width: 60px; text-align: right; color: #fff;">1000 мкс</span>
+            </div>
+          </div>
+
+          <svg width="100%" viewBox="0 0 680 200" role="img">
+            <line x1="20" y1="150" x2="660" y2="150" stroke="#888" stroke-width="0.5"></line>
+            <line x1="20" y1="50" x2="20" y2="150" stroke="#888" stroke-width="0.5"></line>
+            <text x="10" y="64" text-anchor="middle" fill="#ccc" font-size="14">5V</text>
+            <text x="10" y="154" text-anchor="middle" fill="#ccc" font-size="14">0V</text>
+
+            <path id="ppm-path" fill="none" stroke="#378ADD" stroke-width="2" stroke-linejoin="round"></path>
+
+            <g id="ch-labels"></g>
+
+            <text id="sync-label" x="0" y="40" text-anchor="middle" fill="#D85A30" font-size="13">синхропауза</text>
+            <line id="sync-marker" x1="0" y1="50" x2="0" y2="150" stroke="#D85A30" stroke-width="0.5" stroke-dasharray="3 3"></line>
+
+            <text x="340" y="196" text-anchor="middle" fill="#aaa" font-size="12">кадр 20 мс (50 Гц)</text>
+          </svg>
+
+          <p style="color: #ccc; font-size: 14px; margin: 0.75rem 0 0;">
+            Каждый короткий импульс — просто разделитель между каналами.
+            Значение канала кодируется <strong style="color: #378ADD;">временем между разделителями</strong> (1000–2000 мкс),
+            а в конце кадра — длинная <strong style="color: #D85A30;">синхропауза</strong>, отмечающая начало нового кадра.
+          </p>
+
+          <script>
+            (function () {
+              const sliders = ['ch1', 'ch2', 'ch3', 'ch4'].map((id) => document.getElementById(id));
+              const outs = ['ch1-out', 'ch2-out', 'ch3-out', 'ch4-out'].map((id) => document.getElementById(id));
+              const path = document.getElementById('ppm-path');
+              const chLabels = document.getElementById('ch-labels');
+              const syncMarker = document.getElementById('sync-marker');
+              const syncLabel = document.getElementById('sync-label');
+
+              const x0 = 20;
+              const x1 = 660;
+              const yHigh = 50;
+              const yLow = 150;
+              const frameUs = 20000;
+              const pxPerUs = (x1 - x0) / frameUs;
+              const syncPulseUs = 300;
+
+              function render() {
+                const values = sliders.map((s) => parseInt(s.value, 10));
+                values.forEach((v, i) => {
+                  outs[i].textContent = `${v} мкс`;
+                });
+
+                let x = x0;
+                const d = [`M ${x0} ${yLow}`];
+                chLabels.innerHTML = '';
+
+                values.forEach((v, i) => {
+                  const pulseW = syncPulseUs * pxPerUs;
+                  d.push(`L ${x} ${yHigh}`);
+                  d.push(`L ${x + pulseW} ${yHigh}`);
+                  d.push(`L ${x + pulseW} ${yLow}`);
+                  const spaceEnd = x + v * pxPerUs;
+                  d.push(`L ${spaceEnd} ${yLow}`);
+
+                  const midX = x + (v * pxPerUs) / 2;
+                  const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                  label.setAttribute('fill', '#aaa');
+                  label.setAttribute('font-size', '12');
+                  label.setAttribute('x', midX);
+                  label.setAttribute('y', 175);
+                  label.setAttribute('text-anchor', 'middle');
+                  label.textContent = `CH${i + 1}`;
+                  chLabels.appendChild(label);
+
+                  x = spaceEnd;
+                });
+
+                const pulseW = syncPulseUs * pxPerUs;
+                d.push(`L ${x} ${yHigh}`);
+                d.push(`L ${x + pulseW} ${yHigh}`);
+                d.push(`L ${x + pulseW} ${yLow}`);
+                x += pulseW;
+
+                d.push(`L ${x1} ${yLow}`);
+
+                path.setAttribute('d', d.join(' '));
+
+                syncMarker.setAttribute('x1', x);
+                syncMarker.setAttribute('x2', x);
+                syncLabel.setAttribute('x', (x + x1) / 2);
+              }
+
+              sliders.forEach((s) => s.addEventListener('input', render));
+              render();
+            })();
+          </script>
+        </section>
+
+        <section>
           <h3 style="font-size: 1.3rem; margin: 0 0 0.5rem;">DShot: структура цифрового пакета (16 бит)</h3>
 
           <div style="display: flex; align-items: center; gap: 12px; margin: 0 0 0.6rem;">
